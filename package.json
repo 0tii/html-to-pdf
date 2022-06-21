@@ -1,0 +1,16 @@
+{
+    "name": "html-to-pdf",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["html", "to", "pdf", "puppeteer", "convert", "async", "asynchronous", "ES6"],
+    "author": "0tii",
+    "license": "MIT",
+    "dependencies": {
+        "puppeteer": "^14.4.1"
+    }
+}
