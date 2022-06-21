@@ -14,8 +14,8 @@ This solution provides a great number of options to configure for your conversio
     displayHeaderFooter: true,
     headerTemplate: '',
     footerTemplate: '',
-    width: 0, //num in pixels or with units
-    height: 0, //num in pixels or with units
+    width: '1920', //pdf file size in pixels or with units
+    height: '1080', //pdf file size in pixels or with units
     marginTop: 0, //num in pixels or with units
     marginBottom: 0, //num in pixels or with units
     marginLeft: 0, //num in pixels or with units
@@ -24,8 +24,9 @@ This solution provides a great number of options to configure for your conversio
     pageRanges: '', //'1-12' | '3-5'
     path: '', //file save path
     preferCSSPageSize: false, //css-declared page size takes precedent over format, width and height
-    printBackground: false, //print background graphics
+    printBackground: true, //apply visual styling
     scale: 1, //render scale, must be between 0.1 and 2
-    screenMedia: false //use 'screen' instead of 'print' CSS media
+    screenMedia: false, //use 'screen' instead of 'print' CSS media
+    optimizePerformance: false, //use pdf stream, useful for larger documents, requires conversion for b64 and buffer
 }
 ```
