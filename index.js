@@ -8,8 +8,9 @@ import puppeteer from 'puppeteer';
 /**
  * Convert a html string or website (by url) to a pdf file
  * @param {*} html html string
- * @param {*} options options object, refer to the doc for specific options
- * @returns 
+ * @param {*} options options object, refer to the doc for specific options or 
+ * @see convertWithDefaults
+ * @returns HTML converted to PDF as either base64 string or buffer
  */
 async function convert(html, options) {
     //add margins in puppeteer format
@@ -92,64 +93,72 @@ async function streamToBuffer(stream) {
     });
 }
 
+//this is a wrapper to keep the convert function clean while keeping option defaults in one place.
+
 /**
  * Convert a html string or website (by url) to a pdf file
  * @param {*} html html string
  * @param {*} options options object, defaults are respected
- * @returns 
+ * @returns HTML converted to PDF as either base64 string or buffer
  */
-const html2pdf = async function convertWithDefaults(html, {
-    fileType = 'base64',
-    url = '',
-    viewPort = '1920x1080',
-    timeout = 5000,
-    landscape = false,
-    format = '',
-    displayHeaderFooter = true,
-    headerTemplate = '',
-    footerTemplate = '',
-    width = '1920',
-    height = '1080',
-    marginTop = 0,
-    marginBottom = 0,
-    marginLeft = 0,
-    marginRight = 0,
-    avoidTableRowBreak = true,
-    omitBackground = false,
-    pageRanges = '',
-    path = '',
-    preferCSSPageSize = false,
-    printBackground = true,
-    trueColors = true,
-    scale = 1,
-    screenMedia = false
-}) {
-    return await convert(html, {
-        fileType: fileType,
-        url: url,
-        viewPort: viewPort,
-        timeout: timeout,
-        landscape: landscape,
-        format: format,
-        displayHeaderFooter: displayHeaderFooter,
-        headerTemplate: headerTemplate,
-        footerTemplate: footerTemplate,
-        width: width,
-        height: height,
-        marginTop: marginTop,
-        marginBottom: marginBottom,
-        marginLeft: marginLeft,
-        marginRight: marginRight,
-        avoidTableRowBreak: avoidTableRowBreak,
-        omitBackground:  omitBackground,
-        pageRanges: pageRanges,
-        path: path,
-        preferCSSPageSize: preferCSSPageSize,
-        printBackground: printBackground,
-        trueColors: trueColors,
-        scale: scale,
-        screenMedia: screenMedia
-    });
+const html2pdf = async function convertWithDefaults(
+    html,
+    {
+        fileType = 'base64',
+        url = '',
+        viewPort = '1920x1080',
+        timeout = 5000,
+        landscape = false,
+        format = '',
+        displayHeaderFooter = true,
+        headerTemplate = '',
+        footerTemplate = '',
+        width = '1920',
+        height = '1080',
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        avoidTableRowBreak = true,
+        omitBackground = false,
+        pageRanges = '',
+        path = '',
+        preferCSSPageSize = false,
+        printBackground = true,
+        trueColors = true,
+        scale = 1,
+        screenMedia = false
+    } = {}
+) {
+    return await convert(
+        html,
+        {
+            fileType: fileType,
+            url: url,
+            viewPort: viewPort,
+            timeout: timeout,
+            landscape: landscape,
+            format: format,
+            displayHeaderFooter: displayHeaderFooter,
+            headerTemplate: headerTemplate,
+            footerTemplate: footerTemplate,
+            width: width,
+            height: height,
+            marginTop: marginTop,
+            marginBottom: marginBottom,
+            marginLeft: marginLeft,
+            marginRight: marginRight,
+            avoidTableRowBreak: avoidTableRowBreak,
+            omitBackground: omitBackground,
+            pageRanges: pageRanges,
+            path: path,
+            preferCSSPageSize: preferCSSPageSize,
+            printBackground: printBackground,
+            trueColors: trueColors,
+            scale: scale,
+            screenMedia: screenMedia
+        }
+    );
 }
 
 export default html2pdf;
