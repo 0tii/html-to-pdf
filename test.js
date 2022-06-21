@@ -1,10 +1,6 @@
-# 🖥️ HTML2PDF JS
-A simple asynchronous library to create highly customizable PDFs from HTML or URL as ``buffer`` or ``base64 string``. Other than most npm-solutions for html-to-pdf conversion, this one leverages ``puppeteer`` as opposed to the far outdated ``phantomJS`` and is ES6 compatible. It also provides far more options to configure to your liking than most similar solutions.
+import converter from "./index.js";
 
-## Options
-This solution provides a great number of options to configure for your conversion, passed to the exposed function as a javascript object. You can leave most of these in their default state to get a good result.
-```javascript
-{
+console.log(await converter('<h1>hi</h1>', {
     fileType: 'base64', // 'base64' | 'buffer' | 'stream'
     url: '', //if specified ignores html
     viewPort: '1920x1080', //string (width)x(height)
@@ -28,6 +24,5 @@ This solution provides a great number of options to configure for your conversio
     printBackground: true, //apply background styling
     trueColors: true, //use unaltered colors
     scale: 1, //render scale, must be between 0.1 and 2
-    screenMedia: false //use 'screen' instead of 'print' CSS media
-}
-```
+    screenMedia: false, //use 'screen' instead of 'print' CSS media
+}));
