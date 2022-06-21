@@ -48,14 +48,26 @@ async function convert(html, options) {
                     timeout: options.timeout || 5000
                 });
 
-            //inject css for true colors
+            //inject css to repeat table header/footer on each page
+            if (options.repeatTableHeader)
+                await page.addStyleTag({ content: `thead {display: table-header-group; break-inside: avoid }` });
+
+            if (options.repeatTableFooter)
+                await page.addStyleTag({ content: `tfoot {display: table-footer-group; break-inside: avoid }` });
+
+            //inject css for accurate colors
             if (options.trueColors)
                 await page.addStyleTag({ content: `html, body { print-color-adjust: exact }` });
 
             //inject css to avoid rows breaking between pages
             if (options.avoidTableRowBreak) {
-                await page.addStyleTag({ content: `table { page-break-inside:auto }` });
-                await page.addStyleTag({ content: `tr { page-break-inside:avoid; page-break-after:auto }` });
+                await page.addStyleTag({ content: `table { break-inside:auto }` });
+                await page.addStyleTag({ content: `tr { break-inside:avoid; break-after:auto }` });
+            }
+
+            //inject css to avoid divs breaking between pages
+            if (options.avoidDivBreak) {
+                await page.addStyleTag({ content: `div { break-inside:avoid }` });
             }
 
             if (options.screenMedia)
@@ -110,6 +122,8 @@ const html2pdf = async function convertWithDefaults(
         timeout = 5000,
         landscape = false,
         format = '',
+        repeatTableHeader = false,
+        repeatTableFooter = false,
         displayHeaderFooter = true,
         headerTemplate = '',
         footerTemplate = '',
@@ -120,6 +134,7 @@ const html2pdf = async function convertWithDefaults(
         marginLeft = 0,
         marginRight = 0,
         avoidTableRowBreak = true,
+        avoidDivBreak = false,
         omitBackground = false,
         pageRanges = '',
         path = '',
@@ -139,6 +154,8 @@ const html2pdf = async function convertWithDefaults(
             timeout: timeout,
             landscape: landscape,
             format: format,
+            repeatTableHeader: repeatTableHeader,
+            repeatTableFooter: repeatTableFooter,
             displayHeaderFooter: displayHeaderFooter,
             headerTemplate: headerTemplate,
             footerTemplate: footerTemplate,
@@ -149,6 +166,7 @@ const html2pdf = async function convertWithDefaults(
             marginLeft: marginLeft,
             marginRight: marginRight,
             avoidTableRowBreak: avoidTableRowBreak,
+            avoidDivbreak: avoidDivBreak,
             omitBackground: omitBackground,
             pageRanges: pageRanges,
             path: path,
