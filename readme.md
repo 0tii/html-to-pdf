@@ -1,11 +1,32 @@
 # 🖥️ HTML2PDF
-A simple asynchronous library to create highly customizable PDFs from HTML or URL as ``buffer`` or ``base64 string``. Other than most npm-solutions for html-to-pdf conversion, this one leverages ``puppeteer`` as opposed to the far outdated ``phantomJS`` and is ES6 compatible. It also provides far more options to configure to your liking than most similar solutions.
+A simple asynchronous library to create highly customizable PDFs from HTML or URL as ``buffer`` or ``base64 string``. Other than most npm-solutions for html-to-pdf conversion, this one leverages ``puppeteer`` as opposed to the far outdated ``phantomJS`` and is ES6 compatible. It also provides far more options to configure to your liking than most similar solutions. This *might just* be the best out-of-the-box solution on npm at this point.
+
+## Installation
+```
+npm i [-g] html-2-pdf
+```
+
+## Available functions
+Other than the main converter function, HTML2PDF exposes two more functions that allow writing pdf file content as both ``base64`` or ``buffer``. Those functions are also used internally to replace the situationally unreliable ``puppeteer`` native file save function that is controlled by the ``path`` option.
+
+### Function signatures
+Convert function
+```typescript
+html2pdf(html: string, options: Object) : string | Buffer
+```
+```typescript
+base64ToPdf(base64: string, file: string) : void
+```
+```typescript
+bufferToPdf(buffer: Buffer, file: string) : void
+```
 
 ## Usage
-Using HTML2PDF is quick and simple
+Using HTML2PDF is quick and simple: Import the ``html2pdf`` function, pass it the html and options and go.
+
 
 ## Options
-This solution provides a great number of options to configure for your conversion, passed to the exposed function as a javascript object. You can leave most of these in their default state to get a good result.
+This solution provides a great number of options to configure for your conversion, passed as a javascript object. You can leave most of these in their default state to get a good result or tweak them to your liking/requirements.
 ```javascript
 {
     fileType: 'base64', // 'base64' | 'buffer'
