@@ -10,13 +10,15 @@ npm i [-g] html-2-pdf
 Other than the main converter function, HTML2PDF exposes two more functions that allow writing pdf file content as both ``base64`` or ``buffer``. Those functions are also used internally to replace the situationally unreliable ``puppeteer`` native file save function that is controlled by the ``path`` option.
 
 ### Function signatures
-Convert function
+Convert html to pdf
 ```typescript
 html2pdf(html: string, options: Object) : string | Buffer
 ```
+Convert base64 file content to PDF file
 ```typescript
 base64ToPdf(base64: string, file: string) : void
 ```
+Convert file content buffer to PDF file
 ```typescript
 bufferToPdf(buffer: Buffer, file: string) : void
 ```

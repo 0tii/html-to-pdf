@@ -7,7 +7,7 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 
 /**
- * Convert a html string or website (by url) to a pdf file
+ * Convert a html string or website to a pdf file
  * @param {*} html html string
  * @param {*} options options object, refer to the doc for specific options or 
  * @see convertWithDefaults
@@ -75,7 +75,7 @@ async function convert(html, options) {
                 await page.emulateMediaType('screen');
 
             //check for path option and save manually to avoid unreliable puppeteer file save
-            if(options.path){
+            if (options.path) {
                 var path = options.path;
                 options.path = '';
             }
@@ -84,7 +84,7 @@ async function convert(html, options) {
 
             const pdfBuffer = await streamToBuffer(pdfStream);
 
-            if(path)
+            if (path)
                 bufferToPdf(pdfBuffer, path);
 
             await browser.close();
@@ -119,7 +119,7 @@ async function streamToBuffer(stream) {
  * @param {*} base64 pdf file content as b64 string
  * @param {*} file path to write the file to, absolute or relative
  */
-export function base64ToPdf(base64, file){
+export function base64ToPdf(base64, file) {
     const buffer = Buffer.from(base64, 'base64');
     bufferToPdf(buffer, file);
 }
@@ -129,19 +129,19 @@ export function base64ToPdf(base64, file){
  * @param {*} buffer pdf file content as buffer
  * @param {*} file path to write the file to, absolute or relative
  */
-export function bufferToPdf(buffer, file){
+export function bufferToPdf(buffer, file) {
     fs.writeFileSync(file, buffer);
 }
 
 //? vvv this is a wrapper to keep the convert function clean while keeping option defaults in one place. vvv
 
 /**
- * Convert a html string or website (by url) to a pdf file
+ * Convert a html string or website to a pdf file
  * @param {*} html html string
  * @param {*} options options object, defaults are respected
  * @returns HTML converted to PDF as either base64 string or buffer
  */
-export async function html2pdf (
+export async function html2pdf(
     html,
     {
         fileType = 'base64',
@@ -172,7 +172,7 @@ export async function html2pdf (
         scale = 1,
         screenMedia = false
     } = {}
-){
+) {
     return await convert(
         html,
         {
