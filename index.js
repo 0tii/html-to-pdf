@@ -36,6 +36,9 @@ async function convert(html, options) {
             reject('Bad Viewport option.');
         }
 
+        if(options.disableJavascript)
+            await page.setJavaScriptEnabled(false);
+
         try {
             //navigate to or create desired content
             if (options.url) {
@@ -66,6 +69,11 @@ async function convert(html, options) {
             if (options.avoidTableRowBreak) {
                 await page.addStyleTag({ content: `table { break-inside:auto }` });
                 await page.addStyleTag({ content: `tr { break-inside:avoid; break-after:auto }` });
+            }
+
+            //inject css to avoid breaking images
+            if(!options.breakImages){
+                await page.addStyleTag({ content: `img { break-inside: avoid }` });
             }
 
             //inject css to avoid divs breaking between pages
@@ -163,11 +171,13 @@ exports.html2pdf = async function html2pdf(
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        breakImages = false,
         avoidTableRowBreak = true,
         avoidDivBreak = false,
         omitBackground = false,
         pageRanges = '',
         path = '',
+        disableJavascript = false,
         preferCSSPageSize = false,
         printBackground = true,
         trueColors = true,
@@ -195,11 +205,13 @@ exports.html2pdf = async function html2pdf(
             marginBottom: marginBottom,
             marginLeft: marginLeft,
             marginRight: marginRight,
+            breakImages: breakImages,
             avoidTableRowBreak: avoidTableRowBreak,
             avoidDivbreak: avoidDivBreak,
             omitBackground: omitBackground,
             pageRanges: pageRanges,
             path: path,
+            disableJavascript: disableJavascript,
             preferCSSPageSize: preferCSSPageSize,
             printBackground: printBackground,
             trueColors: trueColors,

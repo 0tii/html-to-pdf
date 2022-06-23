@@ -47,11 +47,13 @@ This solution provides a great number of options to configure for your conversio
     marginBottom: 0, //num in pixels or with units (in, mm, cm)
     marginLeft: 0, //num in pixels or with units (in, mm, cm)
     marginRight: 0, //num in pixels or with units (in, mm, cm)
+    breakImages: false, //break images between pages
     avoidTableRowBreak: true, //tries avoiding breaking table rows between pages
     avoidDivBreak: false, //tries to avoid breaking divs between pages - can cause unwanted behavior
     omitBackground: false, //hide html background, allows for transparency
     pageRanges: '', //'1-12' | '3-5'
     path: '', //file save path, if empty no file is created
+    disableJavascript: false, //disable javascript on the target site/html
     preferCSSPageSize: false, //css-declared page size takes precedent over format, width and height
     printBackground: true, //apply background styling
     trueColors: true, //use unaltered colors
