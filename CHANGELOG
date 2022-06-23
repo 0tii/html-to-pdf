@@ -5,3 +5,6 @@
 
 [0.0.2]
 - Add generic ts declaration in order to allow module import
+
+[0.0.3]
+- Added proper typings
