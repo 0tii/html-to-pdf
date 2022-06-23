@@ -1,2 +1,7 @@
 # HTML2PDF © 2022 Daniel Rauhut
 
+[0.0.1] 
+- Initial release
+
+[0.0.2]
+- Add generic ts declaration in order to allow module import
