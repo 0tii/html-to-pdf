@@ -8,3 +8,6 @@
 
 [0.0.3]
 - Added proper typings
+
+[0.0.4]
+- Readme corrected to include valid npm install command

@@ -1,6 +1,6 @@
 {
     "name": "better-html-pdf",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A better library to create highly customizable PDFs from HTML or URL as buffer, base64 string and .pdf file.",
     "main": "index.js",
     "scripts": {},

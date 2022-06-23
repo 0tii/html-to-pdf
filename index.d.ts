@@ -6,7 +6,7 @@ declare module 'better-html-pdf';
  * @param {*} options options object, defaults are respected
  * @returns PDF file content as ``[base64 | buffer]``
  */
-export declare function html2pdf(html: string, options: PdfOptions): string | Buffer;
+export declare async function html2pdf(html: string, options: PdfOptions): string | Buffer;
 
 /**
  * Write a base64 encoded pdf to a pdf file. Path must exist.

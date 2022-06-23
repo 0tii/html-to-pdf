@@ -3,7 +3,7 @@ An easy-to-use but reliable asynchronous library to create highly customizable P
 
 ## Installation
 ```
-npm i [-g] convert-html2pdf
+npm i [-g] better-html-pdf
 ```
 
 ## Available functions
@@ -38,8 +38,16 @@ base64ToPdf(fileContentB64, './test1.pdf');
 bufferToPdf(fileContentBuffer, './test2.pdf');
 ```
 
+For ``module`` users, ES6 imports work fine too.
+```javascript
+import { html2pdf } from 'html-pdf2';
+
+//[...]
+// convert html to PDF
+const fileContentB64 = await html2pdf('<h1>Test</h1>', { avoidTableRowBreak: true, marginTop: 10, repeatTableHeader: false });
+```
 ### Options
-This solution provides a great number of options to configure for your conversion, passed as a javascript object. You can leave most of these in their default state to get a good result or tweak them to your liking/requirements.
+This solution provides a great number of options to configure for your conversion, passed as a javascript object. You can leave most of these in their default state to get a good result or tweak them to your liking/requirements. These are the options and their defaults:
 ```javascript
 {
     fileType: 'base64', // 'base64' | 'buffer'
