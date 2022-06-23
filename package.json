@@ -1,14 +1,14 @@
 {
-    "name": "htmlpdf2",
+    "name": "better-html-pdf",
     "version": "0.0.1",
     "description": "A better library to create highly customizable PDFs from HTML or URL as buffer, base64 string and .pdf file.",
-    "main": "src/index.js",
-    "scripts": {
-    },
+    "main": "index.js",
+    "scripts": {},
     "keywords": [
         "html",
         "to",
         "pdf",
+        "2",
         "puppeteer",
         "convert",
         "async",
@@ -16,7 +16,10 @@
         "node",
         "html2pdf",
         "customizable",
-        "options"
+        "options",
+        "html-pdf-node",
+        "better",
+        "web2pdf"
     ],
     "author": "0tii <daniel@rauhut.me>",
     "license": "MIT",

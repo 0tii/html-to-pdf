@@ -36,7 +36,7 @@ async function convert(html, options) {
             reject('Bad Viewport option.');
         }
 
-        if(options.disableJavascript)
+        if (options.disableJavascript)
             await page.setJavaScriptEnabled(false);
 
         try {
@@ -54,32 +54,7 @@ async function convert(html, options) {
                 });
             }
 
-            //inject css to repeat table header/footer on each page
-            if (options.repeatTableHeader)
-                await page.addStyleTag({ content: `thead {display: table-header-group; break-inside: avoid }` });
-
-            if (options.repeatTableFooter)
-                await page.addStyleTag({ content: `tfoot {display: table-footer-group; break-inside: avoid }` });
-
-            //inject css for accurate colors
-            if (options.trueColors)
-                await page.addStyleTag({ content: `html, body { print-color-adjust: exact }` });
-
-            //inject css to avoid rows breaking between pages
-            if (options.avoidTableRowBreak) {
-                await page.addStyleTag({ content: `table { break-inside:auto }` });
-                await page.addStyleTag({ content: `tr { break-inside:avoid; break-after:auto }` });
-            }
-
-            //inject css to avoid breaking images
-            if(!options.breakImages){
-                await page.addStyleTag({ content: `img { break-inside: avoid }` });
-            }
-
-            //inject css to avoid divs breaking between pages
-            if (options.avoidDivBreak) {
-                await page.addStyleTag({ content: `div { break-inside:avoid }` });
-            }
+            await addCSSOptions(page, options);
 
             if (options.screenMedia)
                 await page.emulateMediaType('screen');
@@ -111,6 +86,38 @@ async function convert(html, options) {
 }
 
 /**
+ * Processes options that are based on injecting CSS into the target page
+ * @param {*} page 
+ * @param {*} options 
+ */
+async function addCSSOptions(page, options) {
+    //inject css to repeat table header/footer on each page
+    if (options.repeatTableHeader === false)
+        await page.addStyleTag({ content: `thead {display: table-row-group; }` });
+
+    if (options.repeatTableFooter === false)
+        await page.addStyleTag({ content: `tfoot {display: table-row-group; }` });
+
+    //inject css for accurate colors
+    if (options.trueColors)
+        await page.addStyleTag({ content: `html, body { print-color-adjust: exact }` });
+
+    //inject css to avoid rows breaking between pages
+    if (options.avoidTableRowBreak) {
+        await page.addStyleTag({ content: `table { break-inside:auto }` });
+        await page.addStyleTag({ content: `tr { break-inside:avoid; break-after:auto }` });
+    }
+
+    //inject css to avoid breaking images
+    if (!options.breakImages) 
+        await page.addStyleTag({ content: `img { break-inside: avoid }` });
+
+    //inject css to avoid divs breaking between pages
+    if (options.avoidDivBreak) 
+        await page.addStyleTag({ content: `div { break-inside:avoid }` });
+}
+
+/**
  * Create a buffer from a stream
  * @param {*} stream the file stream
  * @returns buffer of stream content
@@ -139,7 +146,7 @@ function base64ToPdf(base64, file) {
  * @param {*} buffer pdf file content as buffer
  * @param {*} file path to write the file to, absolute or relative
  */
-function bufferToPdf(buffer, file) {
+async function bufferToPdf(buffer, file) {
     fs.writeFileSync(file, buffer);
 }
 

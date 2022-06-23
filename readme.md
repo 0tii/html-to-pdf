@@ -12,7 +12,7 @@ Other than the main converter function, HTML2PDF exposes two more functions that
 ### Function signatures
 Convert html to pdf
 ```typescript
-html2pdf(html: string, options: Object) : string | Buffer
+html2pdf(html: string, options: Object) : Promise<string | Buffer>
 ```
 Convert base64 file content to PDF file
 ```typescript
@@ -23,10 +23,22 @@ Convert file content buffer to PDF file
 bufferToPdf(buffer: Buffer, file: string) : void
 ```
 
-## Usage
-Using HTML2PDF is quick and simple: Import the ``html2pdf`` function, pass it the html and options and go.
+### Usage
+Using HTML2PDF is quick and simple: Import the ``html2pdf`` function and pass it the html and options.
+```javascript
+const { html2pdf, base64ToPdf, bufferToPdf } = require('html-pdf2');
 
-## Options
+//[...]
+// convert html to PDF
+const fileContentB64 = await html2pdf('<h1>Test</h1>', { avoidTableRowBreak: true, marginTop: 10, repeatTableHeader: false });
+const fileContentBuffer = await html2pdf('<h1>Test</h1>', { fileType: 'buffer', url: 'https://google.com/', viewPort: '1000x700' });
+
+//convert output to pdf file
+base64ToPdf(fileContentB64, './test1.pdf');
+bufferToPdf(fileContentBuffer, './test2.pdf');
+```
+
+### Options
 This solution provides a great number of options to configure for your conversion, passed as a javascript object. You can leave most of these in their default state to get a good result or tweak them to your liking/requirements.
 ```javascript
 {
@@ -36,8 +48,8 @@ This solution provides a great number of options to configure for your conversio
     timeout: 5000, //timeout for page loading in ms
     landscape: false,
     format: '', //letter | legal | tabloid | ledger | a0 | a1 | a2 | a3 | a4 | a5 | a6
-    repeatTableHeader: false, //repeat html table headers on each page
-    repeatTableFooter: false, //repeat html table footers on each page
+    repeatTableHeader: true, //repeat html table headers on each page - note: headers only repeat when in <thead>
+    repeatTableFooter: true, //repeat html table footers on each page - note: footers only repeat when in <tfoot>
     displayHeaderFooter: true,
     headerTemplate: '',
     footerTemplate: '',
@@ -61,3 +73,6 @@ This solution provides a great number of options to configure for your conversio
     screenMedia: false //use 'screen' instead of 'print' CSS media
 }
 ```
+
+## Dependencies
+HTML2PDF depends on `puppeteer`.
