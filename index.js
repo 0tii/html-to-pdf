@@ -3,8 +3,8 @@ Simple asynchronous library to convert html or URL to PDF stream by leveraging p
 
 © 2022 Daniel Rauhut
 */
-import puppeteer from 'puppeteer';
-import fs from 'fs';
+const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 /**
  * Convert a html string or website to a pdf file
@@ -38,16 +38,18 @@ async function convert(html, options) {
 
         try {
             //navigate to or create desired content
-            if (options.url)
+            if (options.url) {
                 await page.goto(options.url, {
                     WaitUntil: 'domcontentloaded',
-                    timeout: options.timeout || 5000
+                    timeout: options.timeout
                 });
-            else
+            }
+            else {
                 await page.setContent(html, {
                     waitUntil: 'domcontentloaded',
-                    timeout: options.timeout || 5000
+                    timeout: options.timeout
                 });
+            }
 
             //inject css to repeat table header/footer on each page
             if (options.repeatTableHeader)
@@ -115,21 +117,21 @@ async function streamToBuffer(stream) {
 }
 
 /**
- * write a base64 encoded pdf to a pdf file
+ * write a base64 encoded pdf to a pdf file. Path must exist.
  * @param {*} base64 pdf file content as b64 string
  * @param {*} file path to write the file to, absolute or relative
  */
-export function base64ToPdf(base64, file) {
+function base64ToPdf(base64, file) {
     const buffer = Buffer.from(base64, 'base64');
     bufferToPdf(buffer, file);
 }
 
 /**
- * write a buffer to a pdf file
+ * write a buffer to a pdf file. Path must exist.
  * @param {*} buffer pdf file content as buffer
  * @param {*} file path to write the file to, absolute or relative
  */
-export function bufferToPdf(buffer, file) {
+function bufferToPdf(buffer, file) {
     fs.writeFileSync(file, buffer);
 }
 
@@ -141,7 +143,7 @@ export function bufferToPdf(buffer, file) {
  * @param {*} options options object, defaults are respected
  * @returns HTML converted to PDF as either base64 string or buffer
  */
-export async function html2pdf(
+exports.html2pdf = async function html2pdf(
     html,
     {
         fileType = 'base64',
@@ -206,3 +208,5 @@ export async function html2pdf(
         }
     );
 }
+exports.base64ToPdf = base64ToPdf;
+exports.bufferToPdf = bufferToPdf;

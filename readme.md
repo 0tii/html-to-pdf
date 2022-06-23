@@ -1,13 +1,13 @@
 # 🖥️ HTML2PDF
-A simple asynchronous library to create highly customizable PDFs from HTML or URL as ``buffer``, ``base64 string`` and ``.pdf file``. Other than most npm-solutions for html-to-pdf conversion, this one leverages ``puppeteer`` as opposed to the deprecated and unmaintained ``phantomJS``. It also provides far more options to configure to your liking than most similar solutions. This *might* be the best html-to-pdf solution on npm at this point.
+An easy-to-use but reliable asynchronous library to create highly customizable PDFs from HTML or URL as ``buffer``, ``base64 string`` and ``.pdf file``. Other than most npm-solutions for html-to-pdf conversion, this one leverages ``puppeteer`` as opposed to the deprecated and unmaintained ``phantomJS``. It also provides far more options to configure to your liking than most similar solutions. This *might* be the best html-to-pdf solution on npm at this point.
 
 ## Installation
 ```
-npm i [-g] html-2-pdf
+npm i [-g] convert-html2pdf
 ```
 
 ## Available functions
-Other than the main converter function, HTML2PDF exposes two more functions that allow writing pdf file content as both ``base64`` or ``buffer``. Those functions are also used internally to replace the situationally unreliable ``puppeteer`` native file save function that is controlled by the ``path`` option.
+Other than the main converter function, HTML2PDF exposes two more functions that allow writing pdf file content as both ``base64`` or ``buffer``. Those functions are also used internally to replace the situationally unreliable ``puppeteer``-native file save function that is controlled through the ``path`` option.
 
 ### Function signatures
 Convert html to pdf
