@@ -136,18 +136,18 @@ async function streamToBuffer(stream) {
  * @param {*} base64 pdf file content as b64 string
  * @param {*} file path to write the file to, absolute or relative
  */
-function base64ToPdf(base64, file) {
-    const buffer = Buffer.from(base64, 'base64');
+function base64ToPdf(fileContent, file) {
+    const buffer = Buffer.from(fileContent, 'base64');
     bufferToPdf(buffer, file);
 }
 
 /**
  * write a buffer to a pdf file. Path must exist.
- * @param {*} buffer pdf file content as buffer
+ * @param {*} fileContent pdf file content as buffer
  * @param {*} file path to write the file to, absolute or relative
  */
-async function bufferToPdf(buffer, file) {
-    fs.writeFileSync(file, buffer);
+async function bufferToPdf(fileContent, file) {
+    fs.writeFileSync(file, fileContent);
 }
 
 //? vvv this is a wrapper to keep the convert function clean while keeping option defaults in one place. vvv

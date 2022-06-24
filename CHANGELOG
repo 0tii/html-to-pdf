@@ -4,10 +4,14 @@
 - Initial release
 
 [0.0.2]
-- Add generic ts declaration in order to allow module import
+- Added generic ts declaration in order to allow module import
 
 [0.0.3]
 - Added proper typings
 
 [0.0.4]
 - Readme corrected to include valid npm install command
+
+[0.1.0]
+- Typed parameters homogenity
+- Fix html2pdf function signature to return Promise instead of the type it resolves to

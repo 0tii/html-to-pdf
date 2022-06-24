@@ -6,18 +6,18 @@ declare module 'better-html-pdf';
  * @param {*} options options object, defaults are respected
  * @returns PDF file content as ``[base64 | buffer]``
  */
-export declare async function html2pdf(html: string, options: PdfOptions): string | Buffer;
+export declare async function html2pdf(html: string, options: PdfOptions): Promise<string> | Promise<Buffer>;
 
 /**
  * Write a base64 encoded pdf to a pdf file. Path must exist.
- * @param {*} base64 pdf file content as b64 string
+ * @param {*} fileContent pdf file content as b64 string
  * @param {*} file path to write the file to, absolute or relative
  */
 export declare function base64ToPdf(fileContent: string, file: string): void;
 
 /**
  * Write a buffer to a pdf file. Path must exist.
- * @param {*} buffer pdf file content as buffer
+ * @param {*} fileContent pdf file content as buffer
  * @param {*} file path to write the file to, absolute or relative
  */
 export declare function bufferToPdf(fileContent: Buffer, file: string): void;
