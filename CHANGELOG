@@ -15,3 +15,6 @@
 [0.1.0]
 - Typed parameters homogenity
 - Fix html2pdf function signature to return Promise instead of the type it resolves to
+
+[0.1.1]
+- Detailed documentation for all available options
