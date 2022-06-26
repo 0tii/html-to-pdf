@@ -47,7 +47,9 @@ import { html2pdf } from 'html-pdf2';
 const fileContentB64 = await html2pdf('<h1>Test</h1>', { avoidTableRowBreak: true, marginTop: 10, repeatTableHeader: false });
 ```
 ### Options
-This solution provides a great number of options to configure for your conversion, passed as a javascript object. You can leave most of these in their default state to get a good result or tweak them to your liking/requirements. These are the options and their defaults:
+This solution provides a great number of options to configure for your conversion, passed as a javascript object. Find a detailed doc of all options and defaults here: [Options Documentation](https://github.com/0tii/html-to-pdf/blob/master/options.md).
+<details>
+<summary>Options and defaults quick view</summary>
 ```javascript
 {
     fileType: 'base64', // 'base64' | 'buffer'
@@ -81,6 +83,7 @@ This solution provides a great number of options to configure for your conversio
     screenMedia: false //use 'screen' instead of 'print' CSS media
 }
 ```
+</details>
 
 ## Dependencies
 HTML2PDF depends on `puppeteer`.
