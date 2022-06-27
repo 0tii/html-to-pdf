@@ -3,3 +3,4 @@ package-lock.json
 *.txt
 *.pdf
 html.js
+test.js
