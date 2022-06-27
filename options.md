@@ -138,4 +138,4 @@ The scale at which the page should be rendered.
 
 ### `screenMedia`<br/>
 `boolean`, `[optional]`, default: `false`\
-`Puppeteer` changes colors for print by default, in order to print the true page colors, this option has to be set to `true`.
+Controls whether to use the `screen` CSS media instead of the `print` ones.
