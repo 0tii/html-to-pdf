@@ -26,7 +26,7 @@ bufferToPdf(buffer: Buffer, file: string) : void
 ### Usage
 Using HTML2PDF is quick and simple: Import the ``html2pdf`` function and pass it the html and options.
 ```javascript
-const { html2pdf, base64ToPdf, bufferToPdf } = require('html-pdf2');
+const { html2pdf, base64ToPdf, bufferToPdf } = require('better-html-pdf');
 
 //[...]
 // convert html to PDF
@@ -38,9 +38,9 @@ base64ToPdf(fileContentB64, './test1.pdf');
 bufferToPdf(fileContentBuffer, './test2.pdf');
 ```
 
-For ``module`` users, ES6 imports work fine too.
+Full type declarations are included so ES6 imports are available, too.
 ```javascript
-import { html2pdf } from 'html-pdf2';
+import { html2pdf } from 'better-html-pdf';
 
 //[...]
 // convert html to PDF

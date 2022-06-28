@@ -17,13 +17,13 @@ The url of the website to print to PDF. If specified, it will override the PDF c
 
 ### `viewPort`<br/>
 `string`, `[optional]`, default: `1920x1080`\
-The emulated screen resolution, that the PDF will be printed as. Must be given as `(width)x(height)`
+The emulated screen resolution, that the PDF will be printed as. Must be given as `(width)x(height)`.
 - Example: `1280x720`
 - Don't: `1920*1080`, `(1920)x(1080)`
 
 ### `timeout`<br/>
 `number`, `[optional]`, default: `5000`\
-The emulated screen resolution, that the PDF will be printed as.
+The time in ms to wait for the page to load.
 
 ### `landscape`<br/>
 `boolean`, `[optional]`, default: `false`\
