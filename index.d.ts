@@ -6,7 +6,7 @@ declare module 'better-html-pdf';
  * @param {*} options options object, defaults are respected
  * @returns PDF file content as ``[base64 | buffer]``
  */
-export declare async function html2pdf(html: string, options: PdfOptions): Promise<string> | Promise<Buffer>;
+export declare function html2pdf(html: string, options: PdfOptions): Promise<string> | Promise<Buffer>;
 
 /**
  * Write a base64 encoded pdf to a pdf file. Path must exist.
@@ -26,7 +26,7 @@ export declare function bufferToPdf(fileContent: Buffer, file: string): void;
  * All options that can be passed to the converter
  */
 export declare interface PdfOptions {
-    fileType?: string,
+    fileType?: FileType,
     url?: string,
     viewPort?: string,
     timeout?: number,
@@ -67,3 +67,5 @@ export declare enum PageFormat{
     a3= 'a3',
     a4 = 'a4'
 }
+
+export type FileType = 'buffer' | 'base64';

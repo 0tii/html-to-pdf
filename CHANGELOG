@@ -18,3 +18,9 @@
 
 [0.1.1]
 - Detailed documentation for all available options
+
+[0.1.2]
+- Improved documentation
+
+[0.1.3]
+- Export type declaration for FileType
