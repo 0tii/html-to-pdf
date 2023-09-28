@@ -25,6 +25,6 @@
     "license": "MIT",
     "homepage": "https://github.com/0tii/html-to-pdf",
     "dependencies": {
-        "puppeteer": "^14.4.1"
+        "puppeteer": "^21.3.5"
     }
 }
